@@ -35,7 +35,7 @@ def get_vendor(mac):
 def arping(iprange, interface):
 
     ans, unans = srp(Ether(dst="ff:ff:ff:ff:ff:ff")/ARP(pdst=iprange),iface=interface, timeout=2)
-    print "\n       IP       <--->       MAC\n"
+    print("\n       IP       <--->       MAC\n")
     collection = []
     for snd, rcv in ans:
         result = rcv.sprintf(r"%ARP.psrc% %Ether.src%").split()
@@ -44,8 +44,8 @@ def arping(iprange, interface):
 
 if __name__ == "__main__":
     if len(sys.argv) > 2:
-        print "arping", sys.argv[1]
+        print("arping", sys.argv[1])
         for pair in arping(sys.argv[1], sys.argv[2]):
-            print "%15s <---> %17s (%s)" % (pair[0], pair[1], get_vendor(pair[1]))
+            print("%15s <---> %17s (%s)" % (pair[0], pair[1], get_vendor(pair[1])))
     else:
-        print "Please Enter ip range as an argument"
+        print("Please Enter ip range as an argument")
